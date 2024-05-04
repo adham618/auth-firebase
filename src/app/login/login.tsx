@@ -59,9 +59,9 @@ export default function Login() {
         </div>
       )}
       {!hasLogged && (
-        <div>
+        <div className="flex flex-col items-center justify-center">
           <Button
-            size={"lg"}
+            size="lg"
             // loading={isGoogleUsingRedirectLoading}
             disabled={isGoogleUsingRedirectLoading}
             onClick={handleLoginWithGoogleUsingRedirect}
@@ -69,7 +69,7 @@ export default function Login() {
             Log in with Google
           </Button>
           {googleUsingRedirectError && (
-            <div className="text-red-500">
+            <div className="text-red-500 mt-4">
               {googleUsingRedirectError.message}
             </div>
           )}
