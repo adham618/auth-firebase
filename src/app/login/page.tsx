@@ -1,5 +1,9 @@
-import {LoginPage as ClientLoginPage} from './LoginPage';
+import Login from "./login";
 
-export default function Login() {
-  return <ClientLoginPage />;
+export default function LoginPage() {
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <Login />
+    </main>
+  );
 }

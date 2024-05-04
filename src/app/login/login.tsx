@@ -1,6 +1,7 @@
 "use client";
 
 import { loginWithCredential } from "@/api";
+import { Button } from "@/components/ui/button";
 import { UserCredential, getRedirectResult } from "firebase/auth";
 import * as React from "react";
 import { useLoadingCallback } from "react-loading-hook";
@@ -9,7 +10,7 @@ import { useRedirectAfterLogin } from "../../shared/useRedirectAfterLogin";
 import { useRedirectParam } from "../../shared/useRedirectParam";
 import { getGoogleProvider, loginWithProviderUsingRedirect } from "./firebase";
 
-export function LoginPage() {
+export default function Login() {
   const [hasLogged, setHasLogged] = React.useState(false);
   const redirect = useRedirectParam();
   const redirectAfterLogin = useRedirectAfterLogin();
@@ -45,11 +46,11 @@ export function LoginPage() {
 
   React.useEffect(() => {
     handleLoginWithRedirect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      <h1>Login</h1>
       {hasLogged && (
         <div>
           <span>
@@ -59,15 +60,18 @@ export function LoginPage() {
       )}
       {!hasLogged && (
         <div>
-          <button
+          <Button
+            size={"lg"}
             // loading={isGoogleUsingRedirectLoading}
             disabled={isGoogleUsingRedirectLoading}
             onClick={handleLoginWithGoogleUsingRedirect}
           >
-            Log in with Google (Redirect)
-          </button>
+            Log in with Google
+          </Button>
           {googleUsingRedirectError && (
-            <div className="">{googleUsingRedirectError.message}</div>
+            <div className="text-red-500">
+              {googleUsingRedirectError.message}
+            </div>
           )}
         </div>
       )}

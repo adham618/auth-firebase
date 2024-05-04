@@ -1,6 +1,7 @@
 "use client";
 
 import { logout } from "@/api";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/auth/AuthContext";
 import { getFirebaseAuth } from "@/hooks/auth/firebase";
 import { signOut } from "firebase/auth";
@@ -27,22 +28,18 @@ export function UserProfile() {
   }
 
   return (
-    <div>
-      <div>
-        <h3>You are logged in as</h3>
-        <div>
-          <div>{user.photoURL && <img src={user.photoURL} />}</div>
-          <span>{user.email}</span>
-        </div>
+    <div className="text-center space-y-4 flex items-center justify-center flex-col">
+      <h2>You are logged in as</h2>
+      <div>{user.photoURL && <img src={user.photoURL} />}</div>
+      <span>{user.email}</span>
 
-        <button
-          // loading={isLogoutLoading || hasLoggedOut}
-          disabled={isLogoutLoading || hasLoggedOut}
-          onClick={handleLogout}
-        >
-          Log out
-        </button>
-      </div>
+      <Button
+        // loading={isLogoutLoading || hasLoggedOut}
+        disabled={isLogoutLoading || hasLoggedOut}
+        onClick={handleLogout}
+      >
+        Log out
+      </Button>
     </div>
   );
 }
