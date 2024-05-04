@@ -6,6 +6,6 @@ test("has title", async ({ page }) => {
   // Expect page to have a title Login
   await expect(page).toHaveTitle(/Login/);
 
-  // Found an element with the text "Log in with Google" and click it
+  // Find an element with the text "Log in with Google" and click it
   await page.getByRole("button", { name: "Log in with Google" }).click();
 });
