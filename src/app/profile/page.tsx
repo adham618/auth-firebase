@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import { UserProfile } from "./user-profile";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Next.js page showcasing next-firebase-auth-edge features",
+};
 
 export default async function Profile() {
   return (
