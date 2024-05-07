@@ -1,22 +1,24 @@
 describe("Login", function () {
-  it("should be able to login", function () {
+  it("should successfully login using Google authentication", function () {
+    // Visit the login page
     cy.visit("/login");
 
-    // Check if "Log in with Google" button is visible
-    cy.get("button").contains("Log in with Google").should("be.visible");
+    // Verify if the "Log in with Google" button is visible
+    cy.get("button")
+      .contains("Log in with Google")
+      .should("be.visible")
+      .click();
 
-    // Click on "Log in with Google" button
-    cy.get("button").contains("Log in with Google").click();
-
+    // Handle Google authentication
     cy.origin("https://accounts.google.com", () => {
-      // Ignore uncaught:exception
+      // Handle uncaught exceptions gracefully
       cy.on("uncaught:exception", (err, runnable) => {
         console.error("Google Login -> uncaught:exception", err);
-        // Skip test from https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/fundamentals__errors
+        // Ignore error and continue test execution
         return false;
       });
 
-      // Type Email
+      // Enter email
       cy.url()
         .should("contain", "accounts.google.com")
         .get('input[type="email"]')
@@ -24,12 +26,30 @@ describe("Login", function () {
         .type("{enter}")
         .wait(3000);
 
-      // Type Password
+      // Enter password
       cy.url()
         .should("contain", "accounts.google.com")
         .get('input[type="password"]')
         .type(Cypress.env("CYPRESS_TEST_PASSWORD"))
         .type("{enter}");
     });
+
+    // Verify successful login by checking URL redirection
+    cy.url().should("not.contain", "accounts.google.com");
+
+    // Wait for the page to fully redirect
+    cy.wait(5000); // Adjust timing as necessary
+
+    // Visit the profile page
+    cy.visit("/profile");
+
+    // Log out
+    cy.get("button").contains("Log out").click();
+
+    // Reload the page
+    cy.reload();
+
+    // Verify redirection back to the login page after logout
+    cy.url().should("contain", "login");
   });
 });
