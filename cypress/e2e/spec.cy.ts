@@ -38,7 +38,7 @@ describe("Login", function () {
     cy.url().should("not.contain", "accounts.google.com");
 
     // Wait for the page to fully redirect
-    cy.wait(5000); // Adjust timing as necessary
+    cy.wait(3000); // Adjust timing as necessary
 
     // Visit the profile page
     cy.visit("/profile");
