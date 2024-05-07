@@ -36,5 +36,5 @@ Cypress.Commands.add("login", () => {
   cy.url().should("not.contain", "accounts.google.com");
 
   // Wait for the page to fully redirect
-  cy.wait(10000); // Adjust timing as necessary
+  cy.wait(10000);
 });
