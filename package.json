@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
@@ -14,7 +15,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "firebase": "^10.11.1",
-    "firebase-admin": "^12.1.0",
+    "firebase-admin": "^11.11.1",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "next-firebase-auth-edge": "^1.4.3",
@@ -25,12 +26,13 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@playwright/test": "^1.43.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cypress": "^13.8.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "firebase-tools": "^13.8.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
