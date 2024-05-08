@@ -8,6 +8,8 @@ describe("Some Test", () => {
 
     cy.visit("/");
     cy.location("pathname").should("eq", "/");
-    cy.logout();
+    if (Cypress.env("CYPRESS_TEST_UID") === undefined) {
+      cy.logout();
+    }
   });
 });
