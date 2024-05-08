@@ -22,7 +22,7 @@ jobs:
         with:
           start: npm run dev
           wait-on: "http://localhost:3000"
-          # browser: chrome
+          browser: chrome
           record: true # Trigger the record for Cypress Cloud
           parallel: true
 
