@@ -12,5 +12,16 @@ export default defineConfig({
   },
   e2e: {
     baseUrl: "http://localhost:3000",
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+      on("before:browser:launch", (browser, launchOptions) => {
+        console.log(launchOptions.args);
+        let removeFlags = ["--enable-automation"];
+        launchOptions.args = launchOptions.args.filter(
+          (value) => !removeFlags.includes(value)
+        );
+        return launchOptions;
+      });
+    },
   },
 });
