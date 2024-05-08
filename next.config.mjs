@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        // port: '',
+      },
+    ],
+  },
   // Needed for `signInWithRedirect` and custom `authDomain` configuration. See https://firebase.google.com/docs/auth/web/redirect-best-practices#proxy-requests
   // If you don't plan to use `signInWithRedirect` or custom `authDomain`, you can safely remove `rewrites` config.
   async rewrites() {

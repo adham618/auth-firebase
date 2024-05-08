@@ -2,7 +2,11 @@
 
 import { loginWithCredential } from "@/api";
 import { Button } from "@/components/ui/button";
-import { User, onAuthStateChanged } from "firebase/auth";
+import {
+  User,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import * as React from "react";
 import { useLoadingCallback } from "react-loading-hook";
 import { getFirebaseAuth } from "../../hooks/auth/firebase";
@@ -33,17 +37,22 @@ export default function Login() {
 
     // User is signed in.
     setHasLogged(true);
-
-    // Initiate Google login with redirect
-    await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
+    if (process.env.NEXT_PUBLIC_CI_ENV === "true") {
+      await createUserWithEmailAndPassword(
+        auth,
+        "driving.test.e2e@gmail.com",
+        "testinge2e"
+      );
+    } else {
+      // Initiate Google login with redirect
+      await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
+    }
   });
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(getFirebaseAuth(), async (user) => {
       if (user) {
         // User is signed in.
-        // You can access the credential like this
-        const credential = await user.getIdToken(/* forceRefresh */ true);
         handleLogin(user);
         setHasLogged(true);
       } else {
