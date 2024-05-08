@@ -7,8 +7,6 @@ require("dotenv").config({ path: ".env.local" });
 
 export default defineConfig({
   projectId: "7ymsq5",
-  video: true,
-  videoCompression: true,
 
   env: {
     FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -18,7 +16,10 @@ export default defineConfig({
     FIREBASE_MEeSSAGING_SENDER_ID:
       process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    CYPRESS_TEST_UID: process.env.CYPRESS_TEST_UID,
+    CYPRESS_TEST_UID:
+      process.env.NEXT_PUBLIC_CI_ENV === "true"
+        ? process.env.CYPRESS_CI_TEST_UID
+        : process.env.CYPRESS_TEST_UID,
   },
   e2e: {
     baseUrl: "http://localhost:3000",
@@ -26,11 +27,8 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // e2e testing node events setup code
       return cypressFirebasePlugin(on, config, admin, {
-        // Here is where you can pass special options.
-        // If you have not set the GCLOUD_PROJECT environment variable, give the projectId here, like so:
-        //    projectId: 'some-project',
-        // if your databaseURL is not just your projectId plus ".firebaseio.com", then you _must_ give it here, like so:
-        //    databaseURL: 'some-project-default-rtdb.europe-west1.firebasedatabase.app',
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        credential: admin.credential.cert(require("./serviceAccount.json")),
       });
     },
   },
