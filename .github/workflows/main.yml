@@ -11,12 +11,6 @@ jobs:
     name: e2e
     runs-on: ubuntu-latest
     steps:
-      - name: Clear Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm # Specify the path to the npm cache directory
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }} # Use a unique cache key
-
       - name: Checkout Repo
         uses: actions/checkout@v4
 
