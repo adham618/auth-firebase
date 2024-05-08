@@ -18,8 +18,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Start Development Server
-        run: npm run dev
+      - name: Build and Start the Application
+        run: |
+          npm run build
+          npm run start & # replace with `npm run dev` if you want to use the development server
 
       # Cypress action manages installing/caching npm dependencies and Cypress binary.
       - name: Run Cypress tests
