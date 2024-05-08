@@ -28,7 +28,10 @@ export default defineConfig({
       // e2e testing node events setup code
       return cypressFirebasePlugin(on, config, admin, {
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        credential: admin.credential.cert(require("./serviceAccount.json")),
+        credential:
+          process.env.NEXT_PUBLIC_CI_ENV === "true"
+            ? admin.credential.cert(require("./serviceAccount.json"))
+            : undefined,
       });
     },
   },
