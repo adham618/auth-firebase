@@ -7,7 +7,7 @@ require("dotenv").config({ path: ".env.local" });
 
 export default defineConfig({
   projectId: "7ymsq5",
-
+  experimentalModifyObstructiveThirdPartyCode: true,
   env: {
     FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
