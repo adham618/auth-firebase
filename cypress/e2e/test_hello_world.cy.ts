@@ -9,5 +9,7 @@ describe("Some Test", () => {
     cy.login(TEST_UID);
     cy.wait(20000);
     cy.location("pathname").should("eq", "/");
+    cy.wait(5000);
+    cy.logout();
   });
 });
