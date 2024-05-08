@@ -16,17 +16,18 @@ export default defineConfig({
     FIREBASE_MEeSSAGING_SENDER_ID:
       process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    CYPRESS_TEST_UID:
-      process.env.NEXT_PUBLIC_CI_ENV === "true"
-        ? process.env.CYPRESS_CI_TEST_UID
-        : process.env.CYPRESS_TEST_UID,
+    CYPRESS_TEST_UID: process.env.CYPRESS_TEST_UID,
+    CYPRESS_CI_TEST_UID: process.env.CYPRESS_CI_TEST_UID,
+    NEXT_PUBLIC_CI_ENV: process.env.NEXT_PUBLIC_CI_ENV,
   },
   e2e: {
     baseUrl: "http://localhost:3000",
     // NOTE: Add "supportFile" setting if separate location is used
     setupNodeEvents(on, config) {
       // e2e testing node events setup code
-      return cypressFirebasePlugin(on, config, admin, {});
+      return cypressFirebasePlugin(on, config, admin, {
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      });
     },
   },
 });
