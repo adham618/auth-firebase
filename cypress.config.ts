@@ -17,8 +17,6 @@ export default defineConfig({
       process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     CYPRESS_TEST_UID: process.env.CYPRESS_TEST_UID,
-    CYPRESS_CI_TEST_UID: process.env.CYPRESS_CI_TEST_UID,
-    NEXT_PUBLIC_CI_ENV: process.env.NEXT_PUBLIC_CI_ENV,
   },
   e2e: {
     baseUrl: "http://localhost:3000",

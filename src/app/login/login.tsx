@@ -2,11 +2,7 @@
 
 import { loginWithCredential } from "@/api";
 import { Button } from "@/components/ui/button";
-import {
-  User,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { User, onAuthStateChanged } from "firebase/auth";
 import * as React from "react";
 import { useLoadingCallback } from "react-loading-hook";
 import { getFirebaseAuth } from "../../hooks/auth/firebase";
@@ -37,16 +33,9 @@ export default function Login() {
 
     // User is signed in.
     setHasLogged(true);
-    if (process.env.NEXT_PUBLIC_CI_ENV === "true") {
-      await signInWithEmailAndPassword(
-        auth,
-        "driving.test.e2e@gmail.com",
-        "testinge2e"
-      );
-    } else {
-      // Initiate Google login with redirect
-      await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
-    }
+
+    // Initiate Google login with redirect
+    await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
   });
 
   React.useEffect(() => {
