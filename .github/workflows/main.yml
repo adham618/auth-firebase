@@ -13,9 +13,9 @@ jobs:
       - name: Save build folder
         uses: actions/upload-artifact@v4
         with:
-          name: build
+          name: nextjs-artifact
           if-no-files-found: error
-          path: build
+          path: .next
 
       # Cypress action manages installing/caching npm dependencies and Cypress binary.
       - name: Cypress Run
