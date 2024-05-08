@@ -4,8 +4,8 @@ import { loginWithCredential } from "@/api";
 import { Button } from "@/components/ui/button";
 import {
   User,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import * as React from "react";
 import { useLoadingCallback } from "react-loading-hook";
@@ -38,7 +38,7 @@ export default function Login() {
     // User is signed in.
     setHasLogged(true);
     if (process.env.NEXT_PUBLIC_CI_ENV === "true") {
-      await createUserWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         "driving.test.e2e@gmail.com",
         "testinge2e"
