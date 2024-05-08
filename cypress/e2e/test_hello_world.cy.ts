@@ -7,6 +7,7 @@ describe("Some Test", () => {
     }
 
     cy.visit("/");
+    cy.visit("/profile");
     // cy.location("pathname").should("eq", "/");
     if (!Cypress.env("NEXT_PUBLIC_CI_ENV")) {
       cy.logout();
