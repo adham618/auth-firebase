@@ -6,12 +6,12 @@ import "firebase/compat/database";
 import "firebase/compat/firestore";
 
 const fbConfig = {
-  apiKey: "AIzaSyCzoWQRvm1cpF2yP2l0vQFWe5M_9UQPUF4",
-  authDomain: "cypress-firebase-auth.firebaseapp.com",
-  projectId: "cypress-firebase-auth",
-  storageBucket: "cypress-firebase-auth.appspot.com",
-  messagingSenderId: "662579692172",
-  appId: "1:662579692172:web:f30bf4ebd1b1de1bb231a9",
+  apiKey: Cypress.env("FIREBASE_API_KEY"),
+  authDomain: Cypress.env("FIREBASE_AUTH_DOMAIN"),
+  projectId: Cypress.env("FIREBASE_PROJECT_ID"),
+  storageBucket: Cypress.env("FIREBASE_STORAGE_BUCKET"),
+  messagingSenderId: Cypress.env("FIREBASE_MEeSSAGING_SENDER_ID"),
+  appId: Cypress.env("FIREBASE_APP_ID"),
 };
 
 firebase.initializeApp(fbConfig);
