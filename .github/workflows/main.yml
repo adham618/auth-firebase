@@ -20,6 +20,8 @@ jobs:
           start: npm run dev
           wait-on: "http://localhost:3000"
           browser: chrome
+          record: true # Trigger the record for Cypress Cloud
+          parallel: true
 
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -35,3 +37,5 @@ jobs:
           USE_SECURE_COOKIES: ${{ secrets.USE_SECURE_COOKIES }}
           CYPRESS_TEST_EMAIL: ${{ secrets.CYPRESS_TEST_EMAIL }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
