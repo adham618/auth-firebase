@@ -42,3 +42,4 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+          NEXT_PUBLIC_CI_ENV: ${{ secrets.NEXT_PUBLIC_CI_ENV }}
