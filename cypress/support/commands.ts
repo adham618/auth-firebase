@@ -11,9 +11,6 @@ Cypress.Commands.add("login", () => {
   });
   // Handle Google authentication
   cy.origin("https://accounts.google.com", () => {
-    cy.once("fail", (err) => {
-      return false;
-    });
     // Handle uncaught exceptions gracefully
     cy.on("uncaught:exception", (err, runnable) => {
       console.error("Google Login -> uncaught:exception", err);
@@ -28,9 +25,7 @@ Cypress.Commands.add("login", () => {
       .type(Cypress.env("CYPRESS_TEST_EMAIL"))
       .type("{enter}")
       .wait(3000);
-    cy.once("fail", (err) => {
-      return false;
-    });
+
     // Enter password
     cy.url()
       .should("contain", "accounts.google.com")
