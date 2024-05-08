@@ -6,6 +6,7 @@ describe("Some Test", () => {
     cy.wait(10000);
     // click button log in with google
     cy.get("button").contains("Log in with Google").click();
+    cy.wait(5000);
     cy.logout();
   });
 });
