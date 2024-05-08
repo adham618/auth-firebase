@@ -1,5 +1,5 @@
-describe("Login and logout", function () {
-  it("should login  go to profile page to logout", function () {
+describe("App", function () {
+  it("should login and go to profile page to logout", function () {
     // login
     cy.login();
 
