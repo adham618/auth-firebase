@@ -7,6 +7,8 @@ require("dotenv").config({ path: ".env.local" });
 
 export default defineConfig({
   projectId: "7ymsq5",
+  video: true,
+  videoCompression: true,
 
   env: {
     FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
