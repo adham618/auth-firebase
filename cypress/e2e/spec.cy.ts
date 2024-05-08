@@ -7,12 +7,12 @@ describe("App", function () {
     cy.visit("/profile");
 
     // Log out
-    // cy.get("button").contains("Log out").click();
+    cy.get("button").contains("Log out").click();
 
     // Reload the page
     cy.reload();
 
     // Verify redirection back to the login page after logout
-    // cy.url().should("contain", "login");
+    cy.url().should("contain", "login");
   });
 });
