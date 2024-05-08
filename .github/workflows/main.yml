@@ -18,10 +18,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build and Start the Application
-        run: |
-          npm run build
-          npm run start & # replace with `npm run dev` if you want to use the development server
+      - name: Start Development Server
+        run: npm run dev
 
       # Cypress action manages installing/caching npm dependencies and Cypress binary.
       - name: Run Cypress tests
@@ -36,6 +34,3 @@ jobs:
         env:
           CYPRESS_TEST_EMAIL: ${{ secrets.CYPRESS_TEST_EMAIL }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
-          # Branch settings
-          GITHUB_HEAD_REF: ${{ github.head_ref }}
-          GITHUB_REF: ${{ github.ref }}
