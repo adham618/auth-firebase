@@ -7,18 +7,16 @@ on:
     branches: [main]
 
 jobs:
-  clear-cache:
-    name: Clear Next.js Cache
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clear Cache
-        run: rm -rf .next
-
   cypress-run:
     name: e2e
     runs-on: ubuntu-latest
-    needs: clear-cache
     steps:
+      - name: Clear Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm # Specify the path to the npm cache directory
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }} # Use a unique cache key
+
       - name: Checkout Repo
         uses: actions/checkout@v4
 
