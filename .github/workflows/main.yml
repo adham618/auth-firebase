@@ -1,4 +1,4 @@
-name: Test Build
+name: cypress-run
 
 on: [push, pull_request]
 
@@ -10,6 +10,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
       - name: Save build folder
         uses: actions/upload-artifact@v4
         with:
@@ -17,12 +22,22 @@ jobs:
           if-no-files-found: error
           path: .next
 
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build and Start the Application
+        run: |
+          npm run build
+          npm run start & # replace with `npm run dev` if you want to use the development server
+
       # Cypress action manages installing/caching npm dependencies and Cypress binary.
-      - name: Cypress Run
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
-          start: npm start
+          # build: npm run build
+          # start: npm start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 60
           browser: chrome
 
         env:
