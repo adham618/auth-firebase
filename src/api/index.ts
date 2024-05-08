@@ -1,5 +1,5 @@
 import { getToken } from "@firebase/app-check";
-import { UserCredential } from "firebase/auth";
+import { User } from "firebase/auth";
 import { getAppCheck } from "../app-check";
 
 export async function login(token: string) {
@@ -20,8 +20,8 @@ export async function login(token: string) {
   });
 }
 
-export async function loginWithCredential(credential: UserCredential) {
-  const idToken = await credential.user.getIdToken();
+export async function loginWithCredential(credential: User) {
+  const idToken = await credential.getIdToken();
 
   await login(idToken);
 }

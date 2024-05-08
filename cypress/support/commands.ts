@@ -1,42 +1,19 @@
-// cypress/support/commands.ts
+import { attachCustomCommands } from "cypress-firebase";
 
-Cypress.Commands.add("login", () => {
-  // Visit the login page
-  cy.visit("/login");
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/database";
+import "firebase/compat/firestore";
 
-  // Verify if the "Log in with Google" button is visible
-  cy.get("button").contains("Log in with Google").should("be.visible").click();
-  // cy.once("fail", (err) => {
-  //   return false;
-  // });
-  // Handle Google authentication
-  cy.origin("https://accounts.google.com", () => {
-    // Handle uncaught exceptions gracefully
-    cy.on("uncaught:exception", (err, runnable) => {
-      console.error("Google Login -> uncaught:exception", err);
-      // Ignore error and continue test execution
-      return false;
-    });
+const fbConfig = {
+  apiKey: "AIzaSyCzoWQRvm1cpF2yP2l0vQFWe5M_9UQPUF4",
+  authDomain: "cypress-firebase-auth.firebaseapp.com",
+  projectId: "cypress-firebase-auth",
+  storageBucket: "cypress-firebase-auth.appspot.com",
+  messagingSenderId: "662579692172",
+  appId: "1:662579692172:web:f30bf4ebd1b1de1bb231a9",
+};
 
-    // Enter email
-    cy.url()
-      .should("contain", "accounts.google.com")
-      .get('input[type="email"]')
-      .type(Cypress.env("CYPRESS_TEST_EMAIL"))
-      .type("{enter}")
-      .wait(3000);
+firebase.initializeApp(fbConfig);
 
-    // Enter password
-    cy.url()
-      .should("contain", "accounts.google.com")
-      .get('input[type="password"]')
-      .type(Cypress.env("CYPRESS_TEST_PASSWORD"))
-      .type("{enter}");
-  });
-
-  // Verify successful login by checking URL redirection
-  cy.url().should("not.contain", "accounts.google.com");
-
-  // Wait for the page to fully redirect
-  cy.wait(10000);
-});
+attachCustomCommands({ Cypress, cy, firebase });
