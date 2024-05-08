@@ -6,9 +6,7 @@ Cypress.Commands.add("login", () => {
 
   // Verify if the "Log in with Google" button is visible
   cy.get("button").contains("Log in with Google").should("be.visible").click();
-  cy.once("fail", (err) => {
-    return false;
-  });
+
   // Handle Google authentication
   cy.origin("https://accounts.google.com", () => {
     // Handle uncaught exceptions gracefully
