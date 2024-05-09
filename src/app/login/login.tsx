@@ -31,9 +31,6 @@ export default function Login() {
 
     const auth = getFirebaseAuth();
 
-    // User is signed in.
-    setHasLogged(true);
-
     // Initiate Google login with redirect
     await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
   });
