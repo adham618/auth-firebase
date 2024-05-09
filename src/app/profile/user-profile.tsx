@@ -26,7 +26,7 @@ export function UserProfile() {
   });
 
   React.useEffect(() => {
-    process.env.NEXT_PUBLIC_CI_ENV === "true"
+    process.env.NEXT_PUBLIC_CI_ENV
       ? setUserData({
           uid: "tPaNDwNmyKRZOxmVtoq3JKBTBPt2",
           email: "e2e-test-only-for-ci@gmail.com",

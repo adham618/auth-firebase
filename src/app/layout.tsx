@@ -23,7 +23,7 @@ export default async function RootLayout({
     <html lang="en">
       <head />
       <body>
-        {process.env.NEXT_PUBLIC_CI_ENV === "true" ? (
+        {process.env.NEXT_PUBLIC_CI_ENV ? (
           <>{children}</>
         ) : (
           <AuthProvider user={user}>{children}</AuthProvider>
