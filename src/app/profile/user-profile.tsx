@@ -55,6 +55,7 @@ export function UserProfile() {
             height={100}
             src={UserData.photoURL}
             alt="avatar"
+            priority
           />
         )}
       </div>
