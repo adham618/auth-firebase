@@ -4,7 +4,7 @@ import { authConfig } from "./config/server-config";
 const PUBLIC_PATHS = ["/login"];
 
 export async function middleware(request: NextRequest) {
-  if (process.env.NEXT_PUBLIC_CI_ENV) {
+  if (process.env.NEXT_PUBLIC_CI_ENV === "true") {
     return NextResponse.next();
   }
 

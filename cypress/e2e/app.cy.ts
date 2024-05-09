@@ -19,6 +19,6 @@ describe("Some Test", () => {
     // check if user is logged in
     cy.contains("You are logged in").should("be.visible");
     // click button to logout
-    cy.get("button").contains("Logout").click();
+    cy.get("button").contains("Log out").click();
   });
 });
