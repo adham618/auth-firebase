@@ -80,7 +80,9 @@ export default function Login() {
             disabled={isGoogleUsingRedirectLoading}
             onClick={() => {
               handleLoginWithGoogleUsingRedirect();
-              setLogging("true");
+              if (!isGoogleUsingRedirectLoading && !googleUsingRedirectError) {
+                setLogging("true");
+              }
             }}
           >
             Log in with Google
